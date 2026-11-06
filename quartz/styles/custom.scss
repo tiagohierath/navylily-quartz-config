@@ -1,0 +1,272 @@
+@use "./variables.scss" as *;
+
+// put your custom CSS here!
+
+// Notebook colors follow Quartz's saved-theme attribute.
+:root {
+  --notebook-bg: #fcf8f5;
+  --notebook-heading: #665d55;
+  --notebook-text: #8b8178;
+  --notebook-accent: #69aeb2;
+  --notebook-border: #e5ded8;
+  --notebook-search: #f2e9e2;
+}
+
+:root[saved-theme="dark"] {
+  --notebook-bg: #161618;
+  --notebook-heading: #ded4cc;
+  --notebook-text: #bcb0a8;
+  --notebook-accent: #8fc6cb;
+  --notebook-border: #454044;
+  --notebook-search: #282629;
+}
+
+body {
+  background: var(--notebook-bg);
+}
+
+.page-title a {
+  color: var(--notebook-accent);
+  font-size: 1.7rem;
+  font-weight: 700;
+  line-height: 1.2;
+  overflow-wrap: anywhere;
+}
+
+.page > #quartz-body .sidebar.left {
+  gap: 1.45rem;
+  height: auto;
+  position: static;
+  align-self: start;
+  min-width: 0;
+  overflow: visible;
+  background: var(--notebook-bg);
+}
+
+.sidebar.left > .flex-component,
+.sidebar.left > .flex-component > div {
+  min-width: 0;
+}
+
+.sidebar.left > .flex-component {
+  width: 100%;
+  align-items: center;
+}
+
+.sidebar.left .search {
+  min-width: 0;
+  max-width: none;
+}
+
+.sidebar.left .search > .search-button {
+  min-width: 0;
+  height: 2rem;
+  border: 1px solid var(--notebook-border);
+  border-radius: 2px;
+  background: var(--notebook-search);
+}
+
+.sidebar.left .search > .search-button > p {
+  color: var(--notebook-text);
+}
+
+.sidebar.left .darkmode svg {
+  fill: var(--notebook-heading);
+}
+
+.recent-notes h3,
+.explorer h2 {
+  color: var(--notebook-heading);
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.sidebar.left .recent-notes > h3 {
+  margin: 0 0 0.5rem;
+}
+
+.sidebar.left .recent-notes > .recent-ul {
+  margin: 0;
+  padding: 0;
+}
+
+.sidebar.left .recent-notes .recent-li {
+  margin: 0.2rem 0;
+  line-height: 1.45;
+}
+
+.recent-notes a,
+.explorer-content a,
+.folder-container button span {
+  color: var(--notebook-text);
+  font-weight: 600;
+}
+
+.sidebar.left .recent-notes a {
+  color: var(--notebook-text);
+}
+
+.sidebar.left .recent-notes a:hover,
+.explorer-content a:hover,
+.folder-container button:hover span,
+.explorer-content a.active {
+  color: var(--notebook-accent);
+}
+
+.sidebar.left .explorer .desktop-explorer {
+  color: var(--notebook-heading);
+  min-height: 1.7rem;
+}
+
+.sidebar.left .explorer-content ul li > a,
+.sidebar.left .folder-container div > button span {
+  color: var(--notebook-text);
+  opacity: 1;
+}
+
+.sidebar.left .explorer-content ul li > a:hover,
+.sidebar.left .explorer-content ul li > a.active,
+.sidebar.left .folder-container div > button:hover span {
+  color: var(--notebook-accent);
+}
+
+.sidebar.left .folder-icon {
+  color: var(--notebook-accent);
+}
+
+.explorer-content .folder-container {
+  min-height: 1.65rem;
+}
+
+.explorer-content .folder-outer > ul {
+  border-left-color: var(--notebook-border);
+}
+
+.page > #quartz-body .sidebar.left .explorer,
+.page > #quartz-body .sidebar.left .explorer-content,
+.page > #quartz-body .sidebar.left .explorer-content > .explorer-ul {
+  height: auto;
+  max-height: none;
+  overflow: visible;
+  mask-image: none;
+}
+
+.sidebar.left .explorer,
+.sidebar.left .explorer-content,
+.sidebar.left .explorer-content > .explorer-ul {
+  flex: 0 0 auto;
+}
+
+.sidebar.left .explorer-content {
+  visibility: visible;
+}
+
+.page > #quartz-body .sidebar.left .explorer.collapsed > .explorer-content {
+  display: none;
+}
+
+// Let open folders take their natural height; keep closed folders collapsible.
+.sidebar.left .explorer-content .folder-outer {
+  display: none;
+  transition: none;
+}
+
+.sidebar.left .explorer-content .folder-outer.open {
+  display: block;
+}
+
+.sidebar.left .explorer-content .folder-outer > ul {
+  overflow: visible;
+}
+
+.sidebar.left .explorer-content .explorer-ul.gradient-active {
+  mask-image: none;
+}
+
+.center article img {
+  width: auto;
+  height: auto;
+  max-width: 50%;
+  max-height: 16rem;
+  object-fit: contain;
+}
+
+@media all and ($mobile) {
+  .center article img {
+    max-height: 12rem;
+  }
+
+  .page > #quartz-body .sidebar.left:has(.explorer) {
+    align-items: stretch;
+    gap: 1.45rem;
+    flex-direction: column;
+    padding: 1.5rem 0 1rem;
+    position: static;
+    background: var(--notebook-bg);
+  }
+
+  .page > #quartz-body.lock-scroll > :not(.sidebar.left:has(.explorer)) {
+    transform: none;
+  }
+
+  .sidebar.left > .page-title,
+  .sidebar.left > .recent-notes,
+  .sidebar.left > .explorer {
+    width: 100%;
+  }
+
+  .sidebar.left .page-title {
+    padding: 0;
+  }
+
+  .sidebar.left > .flex-component {
+    gap: 0.5rem !important;
+  }
+
+  .sidebar.left > .flex-component > div:has(.search) {
+    flex: 1 1 auto !important;
+  }
+
+  .page > #quartz-body .sidebar.left .explorer {
+    align-self: stretch;
+    min-width: 0;
+    width: 100%;
+    order: initial;
+    margin: 0;
+    flex: 0 0 auto;
+    overflow: visible;
+  }
+
+  .sidebar.left .explorer .mobile-explorer {
+    display: none;
+  }
+
+  .sidebar.left .explorer .desktop-explorer {
+    display: flex;
+  }
+
+  .page > #quartz-body .sidebar.left .explorer:not(.collapsed) .explorer-content {
+    position: static;
+    display: block;
+    width: 100%;
+    height: auto;
+    max-width: none;
+    max-height: none;
+    margin-top: 0.5rem;
+    padding: 0;
+    overflow: visible;
+    transform: none;
+    visibility: visible;
+    background: transparent;
+  }
+
+  .sidebar.left .explorer-content > .explorer-ul {
+    height: auto;
+    max-height: none;
+    overflow: visible;
+  }
+
+  .sidebar.right {
+    display: none;
+  }
+}
