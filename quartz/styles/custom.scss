@@ -161,20 +161,6 @@ body {
   visibility: visible;
 }
 
-.page > #quartz-body .sidebar.left .explorer.collapsed > .explorer-content {
-  display: none;
-}
-
-// Let open folders take their natural height; keep closed folders collapsible.
-.sidebar.left .explorer-content .folder-outer {
-  display: none;
-  transition: none;
-}
-
-.sidebar.left .explorer-content .folder-outer.open {
-  display: block;
-}
-
 .sidebar.left .explorer-content .folder-outer > ul {
   overflow: visible;
 }
@@ -245,7 +231,8 @@ body {
     display: flex;
   }
 
-  .page > #quartz-body .sidebar.left .explorer:not(.collapsed) .explorer-content {
+  .page > #quartz-body .sidebar.left .explorer .explorer-content,
+  .page > #quartz-body .sidebar.left .explorer.collapsed .explorer-content {
     position: static;
     display: block;
     width: 100%;
